@@ -1,0 +1,25 @@
+.themeToggleButton {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--text-light, #666);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.darktheme {
+  color: #fff;
+}
+
+body.dark .themeToggleButton:hover {
+  background-color: #333;
+  border: none;
+  outline: none;
+}
+
+

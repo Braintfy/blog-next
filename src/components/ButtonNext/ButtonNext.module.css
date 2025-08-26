@@ -1,0 +1,63 @@
+.buttonNext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  background-color: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #78716c !important;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  min-width: 100px;
+  min-height: 60px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.buttonNext:hover {
+  background-color: #f5f5f4;
+}
+
+.buttonText {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.buttonIcon {
+  font-size: 24px;
+  font-weight: bold;
+}
+:global(body.dark) .buttonText {
+  color: #78716c;
+}
+:global(body.dark) .buttonNext{
+  background-color: black;
+}
+:global(body.dark) .buttonIcon{
+  color: #78716c;
+}
+
+
+:global(body.dark) .buttonNext:hover {
+  background-color: #292524;
+}
+@media (max-width: 767px) {
+  .buttonNext {
+    padding: 6px 10px;      /* ❗ сильно уменьшаем внутренние отступы */
+    min-width: 60px;        /* ❗ делаем кнопку уже */
+    min-height: 30px;       /* ❗ делаем кнопку ниже */
+    font-size: 10px;        /* ❗ уменьшаем текст */
+  }
+
+  .buttonText {
+    margin-right: 5px;
+    font-size: 12px;        /* ❗ уменьшаем текст рядом с иконкой */
+  }
+
+  .buttonIcon {
+    font-size: 16px;        /* ❗ уменьшаем иконку */
+  }
+}

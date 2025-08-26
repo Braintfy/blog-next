@@ -1,0 +1,172 @@
+.articleContent {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh; /* Обеспечивает прокрутку */
+  position: relative; /* Добавляем для правильного позиционирования CustomBar */
+  padding-top: 0; /* Убираем верхний отступ, чтобы CustomBar был вверху */
+}
+
+.content {
+  line-height: 1.7;
+  color: var(--text-secondary, #666);
+  padding-bottom: 3rem;
+  margin-top: 10px; /* Добавляем отступ сверху для содержимого после CustomBar */
+}
+.content a{
+  color: #03b300;
+}
+
+.content h1 {
+  color: #18181b;
+  font-size: 30px;
+}
+
+.content h2 {
+  font-size: 36px;
+  margin: 2rem 0 1rem;
+  color: var(--text-primary, #333);
+  position: relative;
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
+.content h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.content h1 + h2::before {
+  display: none;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+}
+
+.content ul,
+.content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.content blockquote {
+  border-left: 4px solid var(--accent-color, #0066cc);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--text-tertiary, #888);
+}
+
+
+
+
+
+.error {
+  padding: 2rem;
+  text-align: center;
+  color: var(--error-color, #cc0000);
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 5rem;
+}
+
+.navigation > :only-child {
+  margin-left: auto;
+}
+
+.prevButton,
+.nextButton {
+  flex: 1;
+  max-width: 300px;
+  display: flex;
+  align-items: stretch;
+}
+
+.prevButton > a,
+.nextButton > a {
+  width: 100%;
+  height: 100%;
+}
+
+.prevButton {
+  margin-right: auto;
+}
+
+.nextButton {
+  margin-left: auto;
+}
+
+:global(body.dark) .content h1,
+:global(body.dark) .content h2,
+:global(body.dark) .content h3,
+:global(body.dark) .content li {
+  color: #ffffff;
+}
+
+:global(body.dark) .content a {
+  color: #08fc00;
+}
+
+:global(body.dark) .content p {
+  color: #d4d4d8;
+}
+@media (max-width: 767px) {
+  .articleContent {
+    padding: 1rem;
+    max-width: none;
+    margin: 0;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .content {
+    margin-top: 5px;
+    line-height: 1.5;
+    width: 100%;
+    padding-bottom: 3rem; /* чуть больше места снизу на мобилках */
+  }
+
+  .content h1 {
+    font-size: 22px;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .content h2 {
+    font-size: 24px;
+    line-height: 1.4;
+    word-break: break-word;
+    margin: 1.5rem 0 0.75rem; /* поднимаем заголовки ближе на мобилках */
+    padding-top: 1rem; /* уменьшаем внутренний верхний отступ */
+  }
+
+  .content p {
+    font-size: 16px;
+  }
+
+  .navigation {
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .prevButton,
+  .nextButton {
+    max-width: 100%;
+  }
+}
+
+
