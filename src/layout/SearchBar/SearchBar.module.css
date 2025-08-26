@@ -83,3 +83,9 @@
   :global(body.dark) .searchIcon {
     color: #ffffff;
   }
+
+@media (max-width: 767px) {
+  .searchContainer input {
+    width: 150px; 
+  }
+}
