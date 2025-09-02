@@ -54,9 +54,21 @@ export default function Navigation({ onLinkClick }: NavigationProps = {}) {
     return titleA.localeCompare(titleB, 'ru', { sensitivity: 'base' });
   });
 
+  // Получаем только используемые буквы из названий статей
+  const usedLetters = new Set<string>();
+  articles.forEach(article => {
+    const firstChar = article.title.trim().charAt(0).toUpperCase();
+    usedLetters.add(firstChar);
+  });
+
   const russianAlphabet = Array.from({ length: 32 }, (_, i) => String.fromCharCode(0x0410 + i));
   const latinAlphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(0x41 + i));
   const numbersAlphabet = Array.from({ length: 10 }, (_, i) => i.toString());
+
+  // Фильтруем алфавиты по используемым буквам
+  const usedRussianLetters = russianAlphabet.filter(letter => usedLetters.has(letter));
+  const usedLatinLetters = latinAlphabet.filter(letter => usedLetters.has(letter));
+  const usedNumbers = numbersAlphabet.filter(number => usedLetters.has(number));
 
   const scrollToLetter = (letter: string, alphabetSource: string[]) => {
     const scrollViewport = viewportRef.current;
@@ -85,21 +97,27 @@ export default function Navigation({ onLinkClick }: NavigationProps = {}) {
   return (
     <div className={styles.navigation}>
       <div className={styles.alphabetColumn}>
-        <div className={styles.alphabetBlock}>
-          {russianAlphabet.map((letter) => (
-            <button key={letter} className={styles.alphabetButton} onClick={() => scrollToLetter(letter, russianAlphabet)}>{letter}</button>
-          ))}
-        </div>
-        <div className={styles.alphabetBlock}>
-          {latinAlphabet.map((letter) => (
-            <button key={letter} className={styles.alphabetButton} onClick={() => scrollToLetter(letter, latinAlphabet)}>{letter}</button>
-          ))}
-        </div>
-        <div className={styles.alphabetBlock}>
-          {numbersAlphabet.map((letter) => (
-            <button key={letter} className={styles.alphabetButton} data-type="digit" onClick={() => scrollToLetter(letter, numbersAlphabet)}>{letter}</button>
-          ))}
-        </div>
+        {usedRussianLetters.length > 0 && (
+          <div className={styles.alphabetBlock}>
+            {usedRussianLetters.map((letter) => (
+              <button key={letter} className={styles.alphabetButton} onClick={() => scrollToLetter(letter, russianAlphabet)}>{letter}</button>
+            ))}
+          </div>
+        )}
+        {usedLatinLetters.length > 0 && (
+          <div className={styles.alphabetBlock}>
+            {usedLatinLetters.map((letter) => (
+              <button key={letter} className={styles.alphabetButton} onClick={() => scrollToLetter(letter, latinAlphabet)}>{letter}</button>
+            ))}
+          </div>
+        )}
+        {usedNumbers.length > 0 && (
+          <div className={styles.alphabetBlock}>
+            {usedNumbers.map((letter) => (
+              <button key={letter} className={styles.alphabetButton} data-type="digit" onClick={() => scrollToLetter(letter, numbersAlphabet)}>{letter}</button>
+            ))}
+          </div>
+        )}
       </div>
       <ScrollArea.Root className={styles.scrollRoot}>
         <ScrollArea.Viewport ref={viewportRef} className={styles.scrollViewport}>
